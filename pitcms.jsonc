@@ -1,0 +1,52 @@
+{
+	"schemaVersion": 1,
+	"media": {
+		"storagePath": "public/images",
+		"publicPath": "/images"
+	},
+	"collections": [
+		{
+			"name": "posts",
+			"label": "ブログ記事",
+			"description": "ブログの投稿を管理します",
+			"path": "content/posts",
+			"extension": "md",
+			"fields": [
+				{ "name": "title", "type": "text", "label": "タイトル", "required": true },
+				{ "name": "slug", "type": "text", "label": "スラッグ", "required": true },
+				{ "name": "content", "type": "richtext", "label": "本文" },
+				{ "name": "thumbnail", "type": "image", "label": "サムネイル" },
+				{
+					"name": "category",
+					"type": "select",
+					"label": "カテゴリ",
+					"options": [
+						{ "value": "tech", "label": "テクノロジー" },
+						{ "value": "life", "label": "ライフスタイル" }
+					]
+				},
+				{ "name": "publishedAt", "type": "date", "label": "公開日時", "includeTime": true },
+				{ "name": "isDraft", "type": "boolean", "label": "下書き", "default": true }
+			],
+			"layout": [["title"], ["slug", "category"], ["thumbnail"], ["content"]],
+			"pit": {
+				"title": "title",
+				"body": "content",
+				"createdAt": "publishedAt",
+				"draft": "isDraft"
+			}
+		},
+		{
+			"name": "settings",
+			"label": "サイト設定",
+			"path": "content/settings",
+			"extension": "json",
+			"singleton": true,
+			"fields": [
+				{ "name": "siteName", "type": "text", "label": "サイト名", "required": true },
+				{ "name": "description", "type": "textarea", "label": "サイト説明" },
+				{ "name": "logo", "type": "image", "label": "ロゴ" }
+			]
+		}
+	]
+}
